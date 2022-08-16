@@ -106,3 +106,5 @@ penguins_island <- penguins |>
   mutate(body_mass_kg = body_mass_g / 1000) |> 
   rename(location = island)
 ```
+
+# Afternoon
