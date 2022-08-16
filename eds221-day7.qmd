@@ -7,6 +7,7 @@ editor: visual
 ```{r}
 library(tidyverse)
 library(palmerpenguins)
+library(lubridate)
 ```
 
 ## Joins
@@ -105,4 +106,76 @@ penguins_island <- penguins |>
   select (-year, -sex) |> 
   mutate(body_mass_kg = body_mass_g / 1000) |> 
   rename(location = island)
+```
+
+# Afternoon
+
+## Dates and times with `lubridate`
+
+Random Dates
+
+```{r}
+my_date <- "03-15-1998"
+class(my_date)
+
+lubridate::mdy(my_date)
+my_date2 <- "11/07/2003"
+lubridate::dmy(my_date2)
+
+my_date3 <- "08-Jun-1974"
+lubridate::dmy(my_date3)
+
+my_date4 <- "19610518"
+my_new_date4 <- lubridate::ymd(my_date4)
+
+class(my_new_date4)
+```
+
+```{r}
+lubridate::myd("08-2022-30")
+```
+
+```{r}
+lubridate:: mdy("09/23/84")
+```
+
+### Now with date + time
+
+```{r}
+time <- "2022-08-12 11:18"
+time <- ymd_hm(time)
+time
+
+class(time)
+```
+
+```{r}
+bdy <- "06-08-93 06:40"
+bday <- dmy_hm(bdy)
+```
+
+```{r}
+with_tz(bday, "America/Mexico_City")
+with_tz(bday, "Australia/Sydney")
+with_tz(bday, "Pacific/Fiji")
+```
+
+```{r}
+year(bday)
+month(bday)
+day(bday)
+hour(bday)
+minute(bday)
+second(bday)
+```
+
+```{r}
+
+teddy_bday <- lubridate::ymd("2017,06,15")
+teddy_bday
+
+wday(teddy_bday, label = TRUE)
+
+week(teddy_bday)
+week(bday)
 ```
